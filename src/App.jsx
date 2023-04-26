@@ -25,6 +25,7 @@ function App() {
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/user/products" element={<MyProducts />} />
         <Route path="/blog" element={<Blog />} />
+
         {isManager && (
           <Route path="/customer/:id" element={<CustomerDetails />} />
         )}

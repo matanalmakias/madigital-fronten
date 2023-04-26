@@ -14,7 +14,7 @@ const categoryList = [
 const AddPost = () => {
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
-  const [date, setDate] = useState(null);
+
   const [category, setCategory] = useState(null);
   const [tags, setTags] = useState(null);
   const [newCategory, setNewCategory] = useState(null);
@@ -39,7 +39,7 @@ const AddPost = () => {
     const formData = {
       title,
       desc,
-      date,
+
       category,
       tagsArray,
       category: correctCategory,
@@ -49,7 +49,7 @@ const AddPost = () => {
   };
 
   return (
-    <Form>
+    <Form onSubmit={(e) => formSubmit(e)}>
       <input
         onChange={(e) => setTitle(e.target.value)}
         className="form-control"
@@ -64,13 +64,7 @@ const AddPost = () => {
         required
         placeholder="Enter description"
       />
-      <input
-        onChange={(e) => setDate(e.target.value)}
-        className="form-control"
-        type="date"
-        required
-        placeholder="Enter date"
-      />
+
       <select onChange={handleCategoryChange} className="form-control" required>
         <option value="">Select a category</option>
         {categoryList.map((category) => (
@@ -122,6 +116,9 @@ const AddPost = () => {
           "video",
         ]}
       />
+      <button type="submit" className="btn5">
+        Submit
+      </button>
     </Form>
   );
 };

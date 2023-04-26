@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.scss";
-import { useState } from "react";
+
+import BlogItem from "../../components/blog/BlogItem";
 const blogList = [
   {
     id: 1,
@@ -29,6 +30,8 @@ const blogList = [
           "Thanks for sharing these tips! I've been struggling with time management for a while, and I think these tips will really help me.",
       },
     ],
+    likes: 0,
+    shares: 0,
   },
   {
     id: 2,
@@ -57,6 +60,8 @@ const blogList = [
           "This is really helpful for someone just starting out with React. Thanks for sharing!",
       },
     ],
+    likes: 0,
+    shares: 0,
   },
 ];
 const Blog = () => {
@@ -79,59 +84,4 @@ const BlogList = () => {
   );
 };
 
-const BlogItem = ({ item }) => {
-  const [showContent, setShowContent] = useState(false);
-  const htmlString = item.content;
-
-  return (
-    <div className="background3 p-1">
-      <div className="background4  p-2 mb-1 justify-content-center text-center">
-        <div className="col">
-          <p className="heading1 ">{item.title}</p>
-        </div>
-        <div className="col">
-          <p className="p4 fs2 p-3">{item.description}</p>
-        </div>
-        <button onClick={() => setShowContent((s) => !s)} className="btn8">
-          {showContent ? "Show less" : " Read more"}
-        </button>
-      </div>
-      {showContent && (
-        <>
-          <div className="col">
-            <p
-              dangerouslySetInnerHTML={{ __html: item.content }}
-              className="p4 p-3"
-            ></p>
-          </div>
-
-          <div className="background4 row p-1  justify-content-center text-center">
-            <div className="col">
-              <p className="label3">Author:</p>
-              <p className="p4">{item.author}</p>
-            </div>
-            <div className="col">
-              <p className="label3">Category: </p>
-              <p className="p4">{item.category}</p>
-            </div>
-            <div className="col">
-              <p className="label3">Date:</p>
-              <p className="p4">{item.date}</p>
-            </div>
-            <div className="col">
-              <p className="label3">Tags: </p>
-              <p className="p4">
-                {item.tags.map((item, index) => (
-                  <p key={index} className="mb-1 ">
-                    {item} {` `}
-                  </p>
-                ))}
-              </p>
-            </div>
-          </div>
-        </>
-      )}
-    </div>
-  );
-};
 export default Blog;

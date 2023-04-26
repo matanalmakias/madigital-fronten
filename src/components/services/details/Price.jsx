@@ -27,6 +27,7 @@ const Price = ({ product, setIsLoading }) => {
         {product?.pricing?.map((item, index) => (
           <PricingItem
             key={index}
+            index={index}
             item={item}
             product={product}
             setIsLoading={setIsLoading}

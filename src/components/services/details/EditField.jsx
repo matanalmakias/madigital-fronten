@@ -4,7 +4,13 @@ import productService from "../../../services/product/product.service";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../context/AuthContext";
 
-const EditField = ({ sign, productId, setIsLoading, featureItemIndex }) => {
+const EditField = ({
+  sign,
+  productId,
+  setIsLoading,
+  featureItemIndex,
+  pricingIndex,
+}) => {
   const [nameInput, setNameInput] = useState(null);
   const [descInput, setDescInput] = useState(null);
   const [priceInput, setPriceInput] = useState(null);
@@ -86,7 +92,11 @@ const EditField = ({ sign, productId, setIsLoading, featureItemIndex }) => {
     );
   } else if (sign === `pricing-name`) {
     return (
-      <Form onSubmit={(e) => formSubmit(e, `pricing-name`, pricingInput)}>
+      <Form
+        onSubmit={(e) =>
+          formSubmit(e, `pricing-name`, { pricingInput, pricingIndex })
+        }
+      >
         <input
           onChange={(e) => setPricingInput(e.target.value)}
           type="text"
@@ -101,7 +111,11 @@ const EditField = ({ sign, productId, setIsLoading, featureItemIndex }) => {
     );
   } else if (sign === `pricing-price`) {
     return (
-      <Form onSubmit={(e) => formSubmit(e, `pricing-price`, pricingInput)}>
+      <Form
+        onSubmit={(e) =>
+          formSubmit(e, `pricing-price`, { pricingInput, pricingIndex })
+        }
+      >
         <input
           onChange={(e) => setPricingInput(e.target.value)}
           type="number"
@@ -116,7 +130,11 @@ const EditField = ({ sign, productId, setIsLoading, featureItemIndex }) => {
     );
   } else if (sign === `pricing-desc`) {
     return (
-      <Form onSubmit={(e) => formSubmit(e, `pricing-desc`, pricingInput)}>
+      <Form
+        onSubmit={(e) =>
+          formSubmit(e, `pricing-desc`, { pricingInput, pricingIndex })
+        }
+      >
         <textarea
           onChange={(e) => setPricingInput(e.target.value)}
           type="number"

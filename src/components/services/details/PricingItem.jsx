@@ -7,7 +7,7 @@ const PricingItem = ({
 
   item,
   product,
-
+  index,
   setIsLoading,
 }) => {
   const [showEditName, setShowEditName] = useState(false);
@@ -24,6 +24,7 @@ const PricingItem = ({
           setIsLoading={setIsLoading}
           productId={product?._id}
           sign={`${sign}-name`}
+          pricingIndex={index}
         />
       )}
       <p onClick={() => setShowEditPrice((s) => !s)} className="p2">
@@ -34,6 +35,7 @@ const PricingItem = ({
           setIsLoading={setIsLoading}
           productId={product?._id}
           sign={`${sign}-price`}
+          pricingIndex={index}
         />
       )}
       <p onClick={() => setShowEditDescription((s) => !s)} className="p2">
@@ -44,6 +46,7 @@ const PricingItem = ({
           setIsLoading={setIsLoading}
           productId={product?._id}
           sign={`${sign}-desc`}
+          pricingIndex={index}
         />
       )}
     </div>

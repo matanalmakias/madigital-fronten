@@ -94,7 +94,7 @@ export const productList = [
         name: "Premium",
         price: 6000,
         description:
-          "Includes standard package plus deployment to cloud services and maintenance and support.",
+          "  Includes standard package plus deployment to cloud services and maintenance and support.",
       },
     ],
   },
