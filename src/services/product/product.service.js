@@ -3,10 +3,24 @@ import axios from "axios";
 const getAllProducts = async () => {
   return await axios.get(`${serverUrl}/api/product`);
 };
+
+const addFeatures = async (body, productId) => {
+  return axios.post(
+    `${serverUrl}/api/product/addFeature/${productId}`,
+    body,
+    headers
+  );
+};
 const interestInProduct = async (productId) => {
   return await axios.post(
     `${serverUrl}/api/product/interestInProduct/${productId}`,
     {},
+    headers
+  );
+};
+const deleteFeatureItem = async (productId, index) => {
+  return axios.delete(
+    `${serverUrl}/api/product/deleteFeatureItem/${productId}/${index}`,
     headers
   );
 };
@@ -43,5 +57,7 @@ const productService = {
   deleteProduct,
   editField,
   removeFromPending,
+  addFeatures,
+  deleteFeatureItem,
 };
 export default productService;

@@ -3,12 +3,12 @@ import isAdmin from "./../functions/isAdmin.model";
 import authService from "./../services/auth.service";
 import { SocketContext } from "./SocketContext";
 export const AuthContext = createContext({
-  socketUpdate: () => {},
   isLoggedIn: false,
   login(token) {},
   logout() {},
   selfUser: {},
   isManager: Boolean,
+  isModerator: Boolean,
 });
 
 export const AuthProvider = ({ children }) => {
@@ -31,9 +31,7 @@ export const AuthProvider = ({ children }) => {
       socket.off("update");
     };
   }, [isLoggedIn]);
-  const socketUpdate = async () => {
-    return socket.emit(`update`);
-  };
+
   useEffect(() => {
     const userData = localStorage.getItem("user");
     if (userData) {
@@ -97,7 +95,6 @@ export const AuthProvider = ({ children }) => {
     isModerator,
     isAdminState,
     isManager,
-    socketUpdate,
   };
   return (
     <AuthContext.Provider value={contextValues}>

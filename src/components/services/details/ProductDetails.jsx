@@ -24,8 +24,8 @@ const ProductDetails = () => {
   const { isManager } = useContext(AuthContext);
   const id = useParams();
 
-  const product = productList?.find((item) => item._id == id.id);
-  // const product = allProducts?.find((item) => item._id === id.id);
+  //const product = productList?.find((item) => item._id == id.id);
+  const product = allProducts?.find((item) => item._id === id.id);
   const interestedFunc = () => {
     setShowConfirm((s) => !s);
   };

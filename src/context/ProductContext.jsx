@@ -7,9 +7,8 @@ import { useEffect } from "react";
 import siteContentService from "../services/site-content/site-content";
 import { serverUrl } from "../utils/utils";
 import productService from "../services/product/product.service";
-const socket = io(`${serverUrl}`);
+import { SocketContext } from "./SocketContext";
 
-const SocketContext = createContext(socket);
 export const ProductContext = createContext({ allProducts: [] });
 
 export const ProductProvider = ({ children }) => {
@@ -17,12 +16,14 @@ export const ProductProvider = ({ children }) => {
 
   const socket = useContext(SocketContext);
   useEffect(() => {
-    productService.getAllProducts().then((res) => setAllProducts(res.data));
-    socket.on("update", () => {
+    productService.getAllProducts().then((res) => {
+      setAllProducts(res.data);
+    });
+    socket.on("product", () => {
       productService.getAllProducts().then((res) => setAllProducts(res.data));
     });
     return () => {
-      socket.off("update");
+      socket.off("product"); // update event name here
     };
   }, []);
 

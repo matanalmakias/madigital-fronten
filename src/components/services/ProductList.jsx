@@ -22,7 +22,7 @@ const ProductList = () => {
       ) : (
         <div className="row w-100 gap-2 background3 align-items-center justify-content-center">
           {/* allProducts */}
-          {productList?.map((item) => (
+          {allProducts?.map((item) => (
             <ProductItem
               key={item._id}
               item={item}

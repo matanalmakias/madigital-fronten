@@ -4,7 +4,7 @@ import productService from "../../../services/product/product.service";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../context/AuthContext";
 
-const EditField = ({ sign, productId, setIsLoading, index }) => {
+const EditField = ({ sign, productId, setIsLoading, featureItemIndex }) => {
   const [nameInput, setNameInput] = useState(null);
   const [descInput, setDescInput] = useState(null);
   const [priceInput, setPriceInput] = useState(null);
@@ -69,7 +69,7 @@ const EditField = ({ sign, productId, setIsLoading, index }) => {
     return (
       <Form
         onSubmit={(e) =>
-          formSubmit(e, { sign: `features`, index }, featuresInput)
+          formSubmit(e, `features`, { input: featuresInput, featureItemIndex })
         }
       >
         <input
