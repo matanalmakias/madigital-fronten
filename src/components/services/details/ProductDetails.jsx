@@ -1,11 +1,15 @@
 import React, { useContext, useState } from "react";
-import { ProductContext } from "../../context/ProductContext";
+import { ProductContext } from "../../../context/ProductContext";
 import { useParams } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
-import ProductConfirm from "./ProductConfirm";
+import ProductConfirm from "../ProductConfirm";
 import ReactLoading from "react-loading";
-import productService from "../../services/product/product.service";
+import productService from "../../../services/product/product.service";
 import EditField from "./EditField";
+import { AuthContext } from "../../../context/AuthContext";
+import { productList } from "../../../utils/content";
+import Features from "./Features";
+import Price from "./Price";
 
 const ProductDetails = () => {
   const [interested, setInterested] = useState(false);
@@ -15,9 +19,13 @@ const ProductDetails = () => {
   const [showEditName, setShowEditName] = useState(false);
   const [showEditDescription, setShowEditDescription] = useState(false);
   const [showEditPrice, setShowEditPrice] = useState(false);
+  const [showEditFeatures, setShowEditFeatures] = useState(false);
   const { allProducts } = useContext(ProductContext);
+  const { isManager } = useContext(AuthContext);
   const id = useParams();
-  const product = allProducts?.find((item) => item._id === id.id);
+
+  const product = productList?.find((item) => item._id == id.id);
+  // const product = allProducts?.find((item) => item._id === id.id);
   const interestedFunc = () => {
     setShowConfirm((s) => !s);
   };
@@ -33,6 +41,9 @@ const ProductDetails = () => {
         />
       ) : (
         <div className="background2 p-4 border d-flex flex-column gap-2 text-center">
+          {isManager && (
+            <p className="p3">Manager - click on one of fields to edit</p>
+          )}
           <div onClick={() => setShowEditName((s) => !s)}>
             <label htmlFor="name" className="label1">
               Name
@@ -59,23 +70,19 @@ const ProductDetails = () => {
               sign={`desc`}
             />
           )}
-          <div onClick={() => setShowEditPrice((s) => !s)}>
-            <label htmlFor="Price" className="label1">
-              Price
-            </label>
-            <p className="p2">
-              Price is starting from ${product?.startingPrice} per{" "}
-              {product?.priceMethod}
-            </p>
-          </div>
-          {showEditPrice && (
-            <EditField
-              setIsLoading={setIsLoading}
-              productId={product?._id}
-              sign={`price`}
-            />
-          )}
-          <button onClick={() => interestedFunc()} variant="" className="btn7">
+          <Features
+            showEditFeatures={showEditFeatures}
+            setIsLoading={setIsLoading}
+            product={product}
+          />
+
+          <Price
+            product={product}
+            showEditPrice={showEditPrice}
+            setIsLoading={setIsLoading}
+          />
+
+          <button onClick={() => interestedFunc()} variant="" className="btn5">
             Interest in this product
           </button>
           {showConfirm && (

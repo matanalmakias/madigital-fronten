@@ -9,8 +9,8 @@ import productService from "../../services/product/product.service";
 import { toast, ToastContainer } from "react-toastify";
 
 const MyProducts = () => {
-  const [showCompeletedList, setShowCompeletedList] = useState(false);
-  const [showPendingList, setShowPendingList] = useState(false);
+  const [showCompeletedList, setShowCompeletedList] = useState(true);
+  const [showPendingList, setShowPendingList] = useState(true);
 
   return (
     <div className="background4 p-3">
@@ -62,7 +62,7 @@ const PendingItem = ({ id, index }) => {
       .then((res) => toast(res.data.message));
   };
   return (
-    <div className="d-flex flex-column background2 mt-1 p-3 ">
+    <div className="d-flex border1 gap-1 flex-column background4 mt-1 p-2 ">
       <p className="label5  mb-1">{index + 1}</p>
       <div className="col  mb-1">
         <p className="p2 text-secondary  mb-1">{product?.name}</p>

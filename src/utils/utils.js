@@ -1,6 +1,6 @@
 export const serverUrl = `http://localhost:3001`;
 
-//export const serverUrl = `https://madigital-backend.herokuapp.com`;
+//export const serverUrl = `https://madigital-b.herokuapp.com`;
 
 export const headers = {
   headers: { Authorization: localStorage.getItem("token") },

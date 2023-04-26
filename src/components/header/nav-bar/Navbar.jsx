@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
-import UserNav from "../../user-nav/UserNav";
+import UserNav from "./user-nav/UserNav";
 import Login from "../../login/Login";
 import { Col, NavLink, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";

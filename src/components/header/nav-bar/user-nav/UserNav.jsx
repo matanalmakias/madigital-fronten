@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../../../../context/AuthContext";
 import "./style.scss";
 import { useNavigate } from "react-router-dom";
 import { Dropdown, DropdownButton } from "react-bootstrap";
@@ -17,6 +17,11 @@ const UserNav = () => {
       <div className="col">
         <p onClick={() => logout()} className=" login_button">
           Logout
+        </p>
+      </div>
+      <div className="col">
+        <p onClick={() => nav("/blog")} className=" login_button">
+          Blog
         </p>
       </div>
       <div className="col">

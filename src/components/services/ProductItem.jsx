@@ -14,6 +14,7 @@ const ProductItem = ({ item, setIsLoading, isLoading }) => {
   const [alreadyInterested, setAlreadyInterested] = useState();
   const [showConfirm, setShowConfirm] = useState(false);
   const { isLoggedIn, selfUser } = useContext(AuthContext);
+
   useEffect(() => {
     const isIncluded = selfUser?.products?.pending?.some(
       (productId) => item._id === productId

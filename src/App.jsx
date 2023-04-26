@@ -9,8 +9,9 @@ import { CustomerDetails } from "./components/manager/customer/CustomerDetails";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
-import ProductDetails from "./components/services/ProductDetails";
+import ProductDetails from "./components/services/details/ProductDetails";
 import MyProducts from "./pages/my-products/MyProducts";
+import Blog from "./pages/blog/Blog";
 
 function App() {
   const { isManager } = useContext(AuthContext);
@@ -23,6 +24,7 @@ function App() {
         <Route path="/manager" element={<Manager />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/user/products" element={<MyProducts />} />
+        <Route path="/blog" element={<Blog />} />
         {isManager && (
           <Route path="/customer/:id" element={<CustomerDetails />} />
         )}

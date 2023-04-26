@@ -68,6 +68,35 @@ export const productList = [
     desc: `We build web applications from scratch using the latest technologies and methodologies to ensure scalability, security, and performance. Our team can handle everything from designing the user interface to developing the server-side logic.`,
     startingPrice: 3000,
     priceMethod: `project`,
+
+    features: [
+      "Backend development with NodeJS and Express",
+      "RESTful API development",
+      "Real-time application development with Socket.IO",
+      "Integration with databases like MongoDB and MySQL",
+      "Deployment to cloud services like AWS and Heroku",
+      "Maintenance and support",
+    ],
+    pricing: [
+      {
+        name: "Basic",
+        price: 2000,
+        description:
+          "Includes backend development and RESTful API development.",
+      },
+      {
+        name: "Standard",
+        price: 4000,
+        description:
+          "Includes basic package plus real-time application development and integration with databases.",
+      },
+      {
+        name: "Premium",
+        price: 6000,
+        description:
+          "Includes standard package plus deployment to cloud services and maintenance and support.",
+      },
+    ],
   },
   {
     _id: 2,

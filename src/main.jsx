@@ -10,6 +10,7 @@ import { SocketProvider } from "./context/SocketContext";
 import "./style.scss";
 import { SiteContentProvider } from "./context/SiteContentContext";
 import { ProductProvider } from "./context/ProductContext";
+import "react-quill/dist/quill.snow.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <SocketProvider>

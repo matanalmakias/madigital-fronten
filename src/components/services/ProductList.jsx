@@ -9,11 +9,9 @@ import { ProductContext } from "./../../context/ProductContext";
 const ProductList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { allProducts } = useContext(ProductContext);
+
   return (
-    <div
-      className="d-flex align-items-center justify-content-center"
-      
-    >
+    <div className="d-flex align-items-center justify-content-center">
       {isLoading ? (
         <ReactLoading
           type={"spin"}
@@ -23,10 +21,12 @@ const ProductList = () => {
         />
       ) : (
         <div className="row w-100 gap-2 background3 align-items-center justify-content-center">
-          {allProducts?.map((item) => (
+          {/* allProducts */}
+          {productList?.map((item) => (
             <ProductItem
               key={item._id}
-              item={item} isLoading={isLoading}
+              item={item}
+              isLoading={isLoading}
               setIsLoading={setIsLoading}
             />
           ))}

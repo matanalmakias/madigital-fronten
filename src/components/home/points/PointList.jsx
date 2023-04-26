@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { SiteContentContext } from "../../../context/SiteContentContext";
-
+import "./style.scss";
 const PointList = () => {
   const { siteContent } = useContext(SiteContentContext);
   const randomIndex = Math.floor(Math.random() * 6);
@@ -12,6 +12,6 @@ const PointList = () => {
   );
 };
 const PointItem = ({ item }) => {
-  return <p className=" p1 p-3 mt-1 background2 rounded">{item}</p>;
+  return <p className=" p1 p-3 mt-1 fs2 background2 rounded">{item}</p>;
 };
 export default PointList;
