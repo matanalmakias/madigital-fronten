@@ -25,7 +25,7 @@ export const SiteContentProvider = ({ children }) => {
     siteContentService
       .getCustomerList()
       .then((res) => setCustomerList(res.data));
-    socket.on("update", () => {
+    socket.on("siteContent", () => {
       siteContentService
         .getSiteContent()
         .then((res) => setSiteContent(res.data));
@@ -34,7 +34,7 @@ export const SiteContentProvider = ({ children }) => {
         .then((res) => setCustomerList(res.data));
     });
     return () => {
-      socket.off("update");
+      socket.off("siteContent");
     };
   }, []);
   const socketUpdate = () => {

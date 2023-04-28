@@ -24,11 +24,11 @@ export const AuthProvider = ({ children }) => {
     if (isLoggedIn) {
       authService.getSelfUser().then((res) => setSelfUser(res.data));
     }
-    socket.on("update", () => {
+    socket.on("user", () => {
       authService.getSelfUser().then((res) => setSelfUser(res.data));
     });
     return () => {
-      socket.off("update");
+      socket.off("user");
     };
   }, [isLoggedIn]);
 

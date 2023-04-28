@@ -12,9 +12,12 @@ import { ToastContainer } from "react-toastify";
 import ProductDetails from "./components/services/details/ProductDetails";
 import MyProducts from "./pages/my-products/MyProducts";
 import Blog from "./pages/blog/Blog";
+import BlogDetails from "./components/blog/BlogDetails";
+import AddPost from "./pages/blog/AddPost";
 
 function App() {
   const { isManager } = useContext(AuthContext);
+
   return (
     <div className="App main_bg">
       <Header />
@@ -25,6 +28,8 @@ function App() {
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/user/products" element={<MyProducts />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogDetails />} />
+        <Route path="/blog/add-post" element={<AddPost />} />
 
         {isManager && (
           <Route path="/customer/:id" element={<CustomerDetails />} />

@@ -2,6 +2,9 @@ export const serverUrl = `http://localhost:3001`;
 
 //export const serverUrl = `https://madigital-b.herokuapp.com`;
 
+export const hostname = `http://localhost:5173`;
+//export const hostname = `https://madigital.co.il`
+
 export const headers = {
   headers: { Authorization: localStorage.getItem("token") },
 };

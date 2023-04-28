@@ -10,6 +10,7 @@ import { SocketProvider } from "./context/SocketContext";
 import "./style.scss";
 import { SiteContentProvider } from "./context/SiteContentContext";
 import { ProductProvider } from "./context/ProductContext";
+import { BlogProvider } from "./context/BlogContext";
 import "react-quill/dist/quill.snow.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -17,7 +18,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <AuthProvider>
         <ProductProvider>
           <SiteContentProvider>
-            <App />
+            <BlogProvider>
+              <App />
+            </BlogProvider>
           </SiteContentProvider>
         </ProductProvider>
       </AuthProvider>

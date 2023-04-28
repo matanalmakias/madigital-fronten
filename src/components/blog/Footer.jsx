@@ -13,15 +13,17 @@ const Footer = ({ item }) => {
       </div>
       <div className="col">
         <p className="label3">Date:</p>
-        <p className="p4">{item.date}</p>
+        <p className="p4">
+          {item.date && new Date(item.date).toLocaleDateString()}
+        </p>
       </div>
       <div className="col">
         <p className="label3">Tags: </p>
         <p className="p4">
           {item.tags.map((item, index) => (
-            <p key={index} className="mb-1 ">
+            <span key={index} className="mb-1  ">
               {item}
-            </p>
+            </span>
           ))}
         </p>
       </div>

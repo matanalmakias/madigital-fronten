@@ -108,7 +108,7 @@ const ProductItem = ({ item, setIsLoading, isLoading }) => {
                 {alreadyInterested ? (
                   <button
                     onClick={() => nav("/user/products")}
-                    className="bg-danger btn4 text-white"
+                    className=" btn8 "
                   >
                     You are interested in this item
                   </button>
