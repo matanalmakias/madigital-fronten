@@ -36,12 +36,21 @@ const removeLike = async (postId) => {
 const getPendingPosts = async () => {
   return axios.get(`${serverUrl}/api/blog/getPendingPosts`, headers);
 };
+
+const editField = async (postId, sign, body) => {
+  return await axios.put(
+    `${serverUrl}/api/blog/editField/${postId}/${sign}`,
+    body,
+    headers
+  );
+};
 const blogService = {
   getAllBlogs,
   addPost,
   addLike,
   userAddPost,
   removeLike,
+  editField,
   adminConfirm,
   getPendingPosts,
 };
