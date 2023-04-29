@@ -9,6 +9,7 @@ const ManageBlog = () => {
   const [showManageBlog, setShowManageBlog] = useState(false);
   const [showAddPost, setShowAddPost] = useState(false);
   const [showManagePendingPosts, setShowManagePendingPosts] = useState(false);
+  const [showManagePosts, setShowManagePosts] = useState(false);
   return (
     <div className="mt-1">
       <button onClick={() => setShowManageBlog((s) => !s)} className="btn4">
@@ -20,6 +21,13 @@ const ManageBlog = () => {
             Add post
           </button>
           {showAddPost && <AddPost />}
+          <button
+            onClick={() => setShowManagePosts((s) => !s)}
+            className="btn3"
+          >
+            Manage posts
+          </button>
+          {showManagePosts && <ManagePendingPosts sign={`publish`} />}
           <button
             onClick={() => setShowManagePendingPosts((s) => !s)}
             className="btn3"

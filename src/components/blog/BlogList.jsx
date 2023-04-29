@@ -17,10 +17,11 @@ const BlogList = ({ blogList }) => {
           </button>
         </div>
       )}
-
-      {blogList.map((item, index) => (
-        <BlogItem key={item._id} item={item} />
-      ))}
+      <div className="m-1 p-3 d-flex flex-column gap-1 background4">
+        {blogList.map((item, index) => (
+          <BlogItem key={item._id} item={item} />
+        ))}
+      </div>
     </>
   );
 };

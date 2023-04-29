@@ -6,10 +6,14 @@ import Comments from "./Comments";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import AdminConfirm from "./AdminConfirm";
+import EditField from "../manager/blog/EditField";
 
 const BlogItem = ({ item, details, sign }) => {
+  const [showEditTitle, setShowEditTitle] = useState(false);
+  const [showEditDescription, setShowEditDescription] = useState(false);
+  const [showEditContent, setShowEditContent] = useState(false);
   const [showItem, setShowItem] = useState(
-    sign === `pendingList` ? true : false
+    sign === `pendingList` || `publish` ? true : false
   );
   const [showContent, setShowContent] = useState(
     details || sign === `pendingList` ? true : false
@@ -20,7 +24,7 @@ const BlogItem = ({ item, details, sign }) => {
   const nav = useNavigate();
   return (
     <>
-      {sign === `pendingList` && (
+      {(sign === `pendingList` || `publish`) && (
         <button onClick={() => setShowItem((s) => !s)} className="btn4 w-100">
           {item.title}
         </button>
@@ -31,7 +35,16 @@ const BlogItem = ({ item, details, sign }) => {
             {(isModerator || isManager) && sign === `pendingList` && (
               <AdminConfirm item={item} />
             )}
-            <p className="heading1 ">{item.title}</p>
+            {(isManager || isModerator) && (
+              <p className="p2">Click on some field to edit</p>
+            )}
+            <div onClick={() => setShowEditTitle((s) => !s)}>
+              <label htmlFor="Title" className=" w-100 label4">
+                Title
+              </label>
+              <p className="heading1 ">{item.title}</p>
+            </div>
+            {showEditTitle && <EditField sign={`title`} item={item} />}
             {!details ||
               (sign !== `pendingList` && (
                 <button
@@ -41,7 +54,13 @@ const BlogItem = ({ item, details, sign }) => {
                   Details
                 </button>
               ))}
-            <p className="p4 fs2 p-3">{item.desc}</p>
+            <div onClick={() => setShowEditDescription((s) => !s)}>
+              <label htmlFor="Description" className=" w-100 label4">
+                Description
+              </label>
+              <p className="p4 fs2 p-3">{item.desc}</p>
+            </div>
+            {showEditDescription && <EditField sign={`desc`} item={item} />}
 
             <button onClick={() => setShowContent((s) => !s)} className="btn8">
               {showContent ? "Show less" : " Read more"}
@@ -49,17 +68,26 @@ const BlogItem = ({ item, details, sign }) => {
           </div>
           {showContent && (
             <>
-              <div className="col">
-                <p
-                  dangerouslySetInnerHTML={{ __html: item.content }}
-                  className="p4 p-3"
-                ></p>
+              <div className="col p-3">
+                <div onClick={() => setShowEditContent((s) => !s)}>
+                  <label htmlFor="Content" className="text-center w-100 label4">
+                    Content
+                  </label>
+
+                  <p
+                    dangerouslySetInnerHTML={{ __html: item.content }}
+                    className="p4 p-3"
+                  ></p>
+                </div>
+                {showEditContent && <EditField sign={`content`} item={item} />}
+
                 <Comments item={item} />
 
                 <Social item={item} />
               </div>
-
-              <Footer item={item} />
+              <div className="p-2">
+                <Footer item={item} />
+              </div>
             </>
           )}
         </div>

@@ -2,22 +2,32 @@ import React, { useContext } from "react";
 import { BlogContext } from "../../../context/BlogContext";
 import BlogItem from "../../blog/BlogItem";
 
-const ManagePendingPosts = () => {
-  const { pendingPosts } = useContext(BlogContext);
+const ManagePendingPosts = ({ sign }) => {
+  const { pendingPosts, allBlogs } = useContext(BlogContext);
 
   return (
     <div>
-      <PendingList pendingPosts={pendingPosts} />
+      {sign === `publish` ? (
+        <PendingList sign={sign} pendingPosts={allBlogs} />
+      ) : (
+        <PendingList pendingPosts={pendingPosts} />
+      )}
     </div>
   );
 };
-const PendingList = ({ pendingPosts }) => {
+const PendingList = ({ pendingPosts, sign }) => {
   return (
-    <>
-      {pendingPosts?.map((item) => (
-        <BlogItem sign={`pendingList`} item={item} />
+    <div className="m-1 d-flex flex-column gap-1">
+      {pendingPosts?.map((item, index) => (
+        <div key={index}>
+          {sign === `publish` ? (
+            <BlogItem sign={`publishList`} item={item} />
+          ) : (
+            <BlogItem sign={`pendingList`} item={item} />
+          )}
+        </div>
       ))}
-    </>
+    </div>
   );
 };
 

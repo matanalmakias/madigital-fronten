@@ -9,6 +9,7 @@ const Contact = ({ siteContent }) => {
   const [email, setEmail] = useState(null);
   const [phone, setPhone] = useState(null);
   const [name, setName] = useState(null);
+  const [textArea, setTextArea] = useState(null);
   const [errMsg, setErrMsg] = useState("");
   const contactContentWithLineBreaks = siteContent?.contactContent.replace(
     /\. /g,
@@ -18,7 +19,7 @@ const Contact = ({ siteContent }) => {
     e.preventDefault();
     if (phoneRegex.test(phone) && emailRegex.test(email)) {
       setErrMsg("");
-      const formData = { name, phone, email };
+      const formData = { name, phone, email, textArea };
       profileService
         .contactRequest(formData)
         .then((res) => toast(res.data.message))
@@ -97,6 +98,23 @@ const Contact = ({ siteContent }) => {
               required
               className="form-control"
               placeholder="Enter your email"
+            />
+          </div>
+          <div className="col-md-2">
+            <label
+              htmlFor="Meesage"
+              className="form-label mt-2 contact_form_label"
+            >
+              Meesage
+            </label>
+          </div>
+          <div className="col-md-10">
+            <textarea
+              onChange={(e) => setTextArea(e.target.value)}
+              type="text"
+              style={{ height: `100%` }}
+              className="form-control"
+              placeholder="Enter your message content [Optional]"
             />
           </div>
         </div>

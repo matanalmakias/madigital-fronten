@@ -44,7 +44,14 @@ const AddPost = () => {
       category: correctCategory,
       content: htmlContent,
     };
-    blogService.userAddPost(formData).then((res) => toast(res.data.message));
+    blogService
+      .userAddPost(formData)
+      .then((res) => toast(res.data.message))
+      .finally(() =>
+        setTimeout(() => {
+          window.location.reload();
+        }, 1200)
+      );
   };
 
   return (
