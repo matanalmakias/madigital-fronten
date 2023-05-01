@@ -1,6 +1,12 @@
 import axios from "axios";
 import { headers, serverUrl } from "../../utils/utils";
 
+const removePost = async (postId) => {
+  return await axios.delete(
+    `${serverUrl}/api/blog/removePost/${postId}`,
+    headers
+  );
+};
 const userAddPost = async (body) => {
   return await axios.post(`${serverUrl}/api/blog/userAddPost`, body, headers);
 };
@@ -53,5 +59,6 @@ const blogService = {
   editField,
   adminConfirm,
   getPendingPosts,
+  removePost,
 };
 export default blogService;

@@ -7,8 +7,32 @@ import ProductItem from "./ProductItem";
 import { useContext } from "react";
 import { ProductContext } from "./../../context/ProductContext";
 const ProductList = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const { allProducts } = useContext(ProductContext);
+
+  const [visibleProducts, setVisibleProducts] = useState(
+    allProducts?.slice(0, 3)
+  );
+  const [showAll, setShowAll] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (allProducts) {
+      setVisibleProducts(allProducts.slice(0, 3));
+    } else {
+      setVisibleProducts([]);
+    }
+  }, [allProducts]);
+
+  const handleShowMore = () => {
+    setVisibleProducts(allProducts);
+    setShowAll(true);
+  };
+
+  const handleShowLess = () => {
+    setVisibleProducts(allProducts?.slice(0, 3));
+    setShowAll(false);
+  };
 
   return (
     <div className="d-flex align-items-center justify-content-center">
@@ -22,7 +46,7 @@ const ProductList = () => {
       ) : (
         <div className="row w-100 gap-2 background3 align-items-center justify-content-center">
           {/* allProducts */}
-          {allProducts?.map((item) => (
+          {visibleProducts?.map((item) => (
             <ProductItem
               key={item._id}
               item={item}
@@ -30,6 +54,15 @@ const ProductList = () => {
               setIsLoading={setIsLoading}
             />
           ))}
+          {!showAll ? (
+            <button className="btn4" onClick={handleShowMore}>
+              Show More
+            </button>
+          ) : (
+            <button className="btn4" onClick={handleShowLess}>
+              Show Less
+            </button>
+          )}
         </div>
       )}
     </div>

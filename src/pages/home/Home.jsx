@@ -42,6 +42,9 @@ const Home = () => {
         <div className="col ">
           <PointList />
         </div>
+        <div className="col ">
+          <MyCustomerList />
+        </div>
         <div className="col w-100 mb-1 align-items-center d-flex justify-content-center">
           <Contact siteContent={siteContent[0]} />
         </div>

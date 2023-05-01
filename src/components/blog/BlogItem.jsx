@@ -3,11 +3,13 @@ import Social from "./Social";
 import Footer from "./Footer";
 import { Form } from "react-bootstrap";
 import Comments from "./Comments";
+import "./style.scss";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import AdminConfirm from "./AdminConfirm";
 import EditField from "../manager/blog/EditField";
-
+import blogService from "../../services/blog/blog.service";
+import { toast } from "react-toastify";
 const BlogItem = ({ item, details, sign }) => {
   const [showEditTitle, setShowEditTitle] = useState(false);
   const [showEditDescription, setShowEditDescription] = useState(false);
@@ -22,12 +24,25 @@ const BlogItem = ({ item, details, sign }) => {
   const { isManager, isModerator } = useContext(AuthContext);
   const htmlString = item.content;
   const nav = useNavigate();
+  const removeItem = () => {
+    blogService.removePost(item?._id).then((res) => toast(res.data.message));
+  };
   return (
     <>
       {(sign === `pendingList` || `publish`) && (
-        <button onClick={() => setShowItem((s) => !s)} className="btn4 w-100">
-          {item.title}
-        </button>
+        <div className="row justify-content-center  gap-1">
+          <button
+            onClick={() => setShowItem((s) => !s)}
+            className="w_90  btn4 "
+          >
+            {item.title}
+          </button>
+          {(isManager || isModerator) && (
+            <button onClick={() => removeItem()} className=" w_10  btn4">
+              -
+            </button>
+          )}
+        </div>
       )}
       <div>
         <div className={showItem ? "hide_class" : "background3 p-1"}>

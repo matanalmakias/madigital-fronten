@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
+import { Link } from "react-router-dom";
 const MyCustomerItem = ({ item, isOdd }) => {
   const [logoUrl, setLogoUrl] = useState(null);
-  const nav = (url) => {
-    window.location.href = url;
+  const handleNav = (e) => {
+    e.preventDefault();
+    window.open(item.website, "_blank");
   };
+
   useEffect(() => {
     import(`../../../assets/miri/logo.png`).then((module) => {
       setLogoUrl(module.default);
@@ -20,12 +23,14 @@ const MyCustomerItem = ({ item, isOdd }) => {
         )}
         <div className="center1">
           <h4 className="name_of_customers mb-1 h4">{item.name}</h4>
-          <p
+          <a
             className="link_of_customers"
-            onClick={() => nav(`${item.website}`)}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleNav}
           >
-            {item.website}
-          </p>
+            Website
+          </a>
         </div>
       </div>
     </div>
