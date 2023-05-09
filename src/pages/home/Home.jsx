@@ -12,6 +12,7 @@ import Contact from "../../components/contact/Contact";
 import { SiteContentContext } from "./../../context/SiteContentContext";
 import ProductList from "../../components/services/ProductList";
 import PointList from "../../components/home/points/PointList";
+import Blog from "../../components/blog/Blog";
 const Home = () => {
   const [showCreateApp, setShowCreateApp] = useState(false);
   const [showAdv, setShowAdv] = useState(false);
@@ -44,6 +45,9 @@ const Home = () => {
         </div>
         <div className="col ">
           <MyCustomerList />
+        </div>
+        <div className="col ">
+          <Blog />
         </div>
         <div className="col w-100 mb-1 align-items-center d-flex justify-content-center">
           <Contact siteContent={siteContent[0]} />

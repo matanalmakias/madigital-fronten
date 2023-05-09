@@ -15,8 +15,9 @@ const BlogItem = ({ item, details, sign }) => {
   const [showEditDescription, setShowEditDescription] = useState(false);
   const [showEditContent, setShowEditContent] = useState(false);
   const [showItem, setShowItem] = useState(
-    sign === `pendingList` || `publish` ? true : false
+    (sign === `pendingList` || `publish`) && !details ? true : false
   );
+
   const [showContent, setShowContent] = useState(
     details || sign === `pendingList` ? true : false
   );
@@ -29,22 +30,31 @@ const BlogItem = ({ item, details, sign }) => {
   };
   return (
     <>
-      {(sign === `pendingList` || `publish`) && (
-        <div className="row justify-content-center  gap-1">
-          <button
-            onClick={() => setShowItem((s) => !s)}
-            className="w_90  btn4 "
-          >
-            {item.title}
-          </button>
-          {(isManager || isModerator) && (
-            <button onClick={() => removeItem()} className=" w_10  btn4">
-              -
-            </button>
+      {!details && (
+        <>
+          {(sign === `pendingList` || `publish`) && (
+            <div className="row justify-content-center  gap-1">
+              <button
+                onClick={() => setShowItem((s) => !s)}
+                className="w_90  btn4 "
+              >
+                {item.title}
+              </button>
+              {(isManager || isModerator) && (
+                <button onClick={() => removeItem()} className=" w_10  btn4">
+                  Delete -
+                </button>
+              )}
+            </div>
           )}
-        </div>
+        </>
       )}
       <div>
+        {details && (
+          <div className="d-flex p-1 align-items-center justify-content-center">
+            <h1 className="h1 bg-primary text-white p-3">{item.title}</h1>
+          </div>
+        )}
         <div className={showItem ? "hide_class" : "background3 p-1"}>
           <div className="background4 d-flex flex-column gap-1 p-2 mb-1 justify-content-center text-center">
             {(isModerator || isManager) && sign === `pendingList` && (
@@ -53,14 +63,18 @@ const BlogItem = ({ item, details, sign }) => {
             {(isManager || isModerator) && (
               <p className="p2">Click on some field to edit</p>
             )}
-            <div onClick={() => setShowEditTitle((s) => !s)}>
-              <label htmlFor="Title" className=" w-100 label4">
-                Title
-              </label>
-              <p className="heading1 ">{item.title}</p>
-            </div>
-            {showEditTitle && <EditField sign={`title`} item={item} />}
-            {!details ||
+            {!details && (
+              <>
+                <div onClick={() => setShowEditTitle((s) => !s)}>
+                  <label htmlFor="Title" className=" w-100 label4">
+                    Title
+                  </label>
+                  <p className="heading1 ">{item.title}</p>
+                </div>
+                {showEditTitle && <EditField sign={`title`} item={item} />}
+              </>
+            )}
+            {details ||
               (sign !== `pendingList` && (
                 <button
                   onClick={() => nav(`/blog/${item?._id}`)}
@@ -81,7 +95,7 @@ const BlogItem = ({ item, details, sign }) => {
               {showContent ? "Show less" : " Read more"}
             </button>
           </div>
-          {showContent && (
+          {showContent && details && (
             <>
               <div className="col p-3">
                 <div onClick={() => setShowEditContent((s) => !s)}>
